@@ -29,3 +29,17 @@ A web-based Student Attendance Management System developed using Flask, Python, 
 
 ```bash
 python app.py
+
+## Screenshots
+
+### Dashboard
+Student dashboard with total students, present and absent counts.
+
+### Student Management
+Add, edit and manage student records.
+
+### Mark Attendance
+Mark daily student attendance.
+
+### Attendance Report
+View attendance records and reports.
