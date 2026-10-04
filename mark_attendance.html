@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark Attendance</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        .header {
+            background: #234494;
+            color: white;
+            padding: 20px 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 700px;
+            margin: 50px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+.box {
+    transition: 0.3s;
+}
+
+.box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+        h2 {
+            color: #234494;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+select:focus {
+    outline: none;
+    border-color: #234494;
+    box-shadow: 0 0 0 3px rgba(35, 68, 148, 0.1);
+}
+        .status {
+            margin-top: 15px;
+        }
+
+        .status label {
+            display: inline-block;
+            margin-right: 30px;
+            font-weight: normal;
+        }
+.status label:first-child {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.status label:last-child {
+    color: #dc2626;
+    font-weight: bold;
+}
+.status input:checked {
+    accent-color: #234494;
+    transform: scale(1.15);
+}
+        button {
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #234494;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #183475;
+        }
+.back {
+    display: inline-block;
+    margin-left: 15px;
+    padding: 12px 20px;
+    background-color: #64748b;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.back:hover {
+    background-color: #475569;
+    transform: translateY(-2px);
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        Student Attendance
+    </div>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h2>Mark Attendance</h2>
+
+            <form method="POST">
+
+                <label for="student_id">
+                    Select Student
+                </label>
+
+                <select name="student_id" id="student_id" required>
+
+                    <option value="">
+                        -- Select Student --
+                    </option>
+
+                    {% for student in students %}
+
+                    <option value="{{ student.id }}">
+                        {{ student.name }} - Roll No: {{ student.roll_no }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <label>
+                    Attendance Status
+                </label>
+
+                <div class="status">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="status"
+                            value="Present"
+                            required
+                        >
+                        Present
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="status"
+                            value="Absent"
+                        >
+                        Absent
+                    </label>
+
+                </div>
+
+
+                <button type="submit">
+                    Mark Attendance
+                </button>
+
+                <a href="/" class="back">
+                    Back to Dashboard
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

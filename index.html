@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Attendance Management</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .navbar {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            font-size: 24px;
+        }
+
+        .navbar span {
+            font-size: 16px;
+        }
+
+        .container {
+            padding: 40px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #64748b;
+        }
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+.card-icon {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.total-card {
+    border-top: 5px solid #1e3a8a;
+}
+
+.present-card {
+    border-top: 5px solid #15803d;
+}
+
+.absent-card {
+    border-top: 5px solid #dc2626;
+}
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h3 {
+            color: #475569;
+            margin-bottom: 15px;
+        }
+
+        .number {
+            font-size: 35px;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+
+        .buttons {
+            margin-top: 35px;
+        }
+
+        button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #162d6b;
+        }
+        button {
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+        .student-management {
+    margin-top: 20px;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>Student Attendance</h2>
+        <span>Admin Dashboard</span>
+    </div>
+
+    <div class="container">
+
+        <div class="welcome">
+            <h1>Dashboard</h1>
+            <p>Welcome to Student Attendance Management System</p>
+        </div>
+
+        <div class="cards">
+<div class="card total-card">
+    <div class="card-icon">👨‍🎓</div>
+    <h3>Total Students</h3>
+    <div class="number">{{ total_students }}</div>
+</div>
+
+<div class="card present-card">
+    <div class="card-icon">✅</div>
+    <h3>Present Today</h3>
+    <div class="number">{{ present_today }}</div>
+</div>
+<div class="card absent-card">
+    <div class="card-icon">❌</div>
+    <h3>Absent Today</h3>
+    <div class="number">{{ absent_today }}</div>
+</div>
+
+        </div>
+<div class="buttons">
+<button onclick="window.location.href='/add-student'">
+    ➕ Add Student
+</button>
+<button onclick="window.location.href='/mark-attendance'">
+    📝 Mark Attendance
+</button>
+<button onclick="window.location.href='/view-attendance'">
+    📋 View Attendance
+</button>
+   <button onclick="window.location.href='/attendance-report'">
+    📊 Attendance Report
+</button>
+<div class="student-management">
+   <button onclick="window.location.href='/students'">
+    👥 Student Management
+</button>
+</div>
+</div>
+
+</body>
+
+</html>

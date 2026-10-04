@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Attendance</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            padding: 40px;
+        }
+
+        h1 {
+            color: #1e293b;
+        }
+
+        .filter {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .filter {
+    transition: 0.3s;
+}
+
+.filter:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+        .filter input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+.filter input:focus {
+    outline: none;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+        .filter button {
+            padding: 10px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        .card {
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+        .card h3 {
+            color: #475569;
+            margin-bottom: 10px;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+        .status-present {
+    font-weight: bold;
+    color: #15803d;
+}
+
+.status-absent {
+    font-weight: bold;
+    color: #dc2626;
+}
+table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+    margin-top: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .back {
+    transition: 0.3s;
+}
+
+.back:hover {
+    background-color: #162d6b;
+    transform: translateY(-2px);
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>Student Attendance</h2>
+        <span>View Attendance</span>
+    </div>
+
+    <div class="container">
+
+        <h1>Attendance Records</h1>
+
+        <!-- DATE FILTER -->
+        <div class="filter">
+
+            <form method="GET">
+
+                <label>
+                    Select Date:
+                </label>
+
+                <input
+                    type="date"
+                    name="date"
+                    value="{{ selected_date or '' }}"
+                >
+
+                <button type="submit">
+                    Filter
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ATTENDANCE SUMMARY -->
+        <div class="summary">
+
+            <div class="card">
+                <h3>Total Records</h3>
+                <div class="number">
+                    {{ total_records }}
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Total Present</h3>
+                <div class="number">
+                    {{ total_present }}
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Total Absent</h3>
+                <div class="number">
+                    {{ total_absent }}
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ATTENDANCE TABLE -->
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Roll No</th>
+                <th>Department</th>
+                <th>Year</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+
+            {% for row in attendance %}
+
+            <tr>
+
+                <td>{{ row.id }}</td>
+
+                <td>{{ row.name }}</td>
+
+                <td>{{ row.roll_no }}</td>
+
+                <td>{{ row.department }}</td>
+
+                <td>{{ row.year }}</td>
+
+                <td>{{ row.attendance_date }}</td>
+
+<td class="{% if row.status == 'Present' %}status-present{% else %}status-absent{% endif %}">
+    {{ row.status }}
+</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+
+        <a href="/" class="back">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>

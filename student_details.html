@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 20px 40px;
+        }
+
+        .container {
+            width: 600px;
+            margin: 50px auto;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #1e293b;
+            margin-bottom: 25px;
+        }
+.detail {
+    padding: 18px;
+    margin-bottom: 15px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+        .label {
+            font-weight: bold;
+            color: #475569;
+        }
+
+        .value {
+            color: #1e293b;
+            margin-left: 10px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>Student Attendance</h2>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Student Details</h1>
+
+            <div class="detail">
+                <span class="label">ID:</span>
+                <span class="value">{{ student.id }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Name:</span>
+                <span class="value">{{ student.name }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Roll Number:</span>
+                <span class="value">{{ student.roll_no }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Department:</span>
+                <span class="value">{{ student.department }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Year:</span>
+                <span class="value">{{ student.year }}</span>
+            </div>
+
+            <a href="/students" class="back">
+                Back to Students
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

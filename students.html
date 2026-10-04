@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 20px 40px; 
+        }
+
+        .container {
+            padding: 40px;
+        }
+
+        h1 {
+            color: #1e293b;
+        }
+        
+#searchInput {
+    width: 300px;
+    padding: 12px;
+    margin-top: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+    margin-top: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+        th,
+        td {
+            padding: 14px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+        .edit {
+            background-color: #2563eb;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .edit:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.edit {
+    transition: 0.3s;
+}
+.delete {
+    background-color: #dc2626;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 8px;
+}
+.delete:hover {
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+}
+
+.delete {
+    transition: 0.3s;
+}
+.details {
+    display: inline-block;
+    margin-top: 12px;
+        margin-left: 8px;
+
+    background-color: #0f766e;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.details:hover {
+    background-color: #115e59;
+    transform: translateY(-2px);
+}
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        .back {
+    transition: 0.3s;
+}
+
+.back:hover {
+    background-color: #162d6b;
+    transform: translateY(-2px);
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h2>Student Attendance</h2>
+    </div>
+
+    <div class="container">
+
+        <h1>Student Management</h1>
+<input
+    type="text"
+    id="searchInput"
+    placeholder="Search student..."
+    onkeyup="searchStudents()"
+>
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll Number</th>
+                <th>Department</th>
+                <th>Year</th>
+                <th>Action</th>
+            </tr>
+
+            {% for student in students %}
+
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.roll_no }}</td>
+                <td>{{ student.department }}</td>
+                <td>{{ student.year }}</td>
+
+                <td>
+                    <a
+                        href="/edit-student/{{ student.id }}"
+                        class="edit"
+                    >
+                        Edit
+                    </a>
+                     <a 
+        href="/delete-student/{{ student.id }}"
+        class="delete"
+        onclick="return confirm('Are you sure you want to delete this student?')"
+    >
+        Delete
+    </a>
+    <a
+    href="/student-details/{{ student.id }}"
+    class="details"
+>
+    Details
+</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <a href="/" class="back">
+            Back to Dashboard
+        </a>
+
+    </div>
+<script>
+function searchStudents() {
+
+    let input = document.getElementById("searchInput").value.toLowerCase();
+
+    let rows = document.querySelectorAll("table tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        let rowText = rows[i].innerText.toLowerCase();
+
+        if (rowText.includes(input)) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+</script>
+</body>
+
+</html>
